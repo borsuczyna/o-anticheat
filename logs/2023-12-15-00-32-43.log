@@ -1,0 +1,16 @@
+[15/12/2023 00:32:43] Starting anticheat...
+[15/12/2023 00:32:43] Checking permissions...
+[15/12/2023 00:32:43] Permissions check passed...
+[15/12/2023 00:32:43] Locker tests initialized
+[15/12/2023 00:32:43] Fly hack tests initialized
+[15/12/2023 00:32:43] Vehicle fly hack tests initialized
+[15/12/2023 00:32:43] Explosions tests initialized
+[15/12/2023 00:32:43] Damage multiplier tests initialized
+[15/12/2023 00:32:43] Trigger spam tests initialized
+[15/12/2023 00:32:43] Explode players tests initialized
+[15/12/2023 00:32:43] Speed hack tests initialized
+[15/12/2023 00:32:43] Speed hack tests initialized
+[15/12/2023 00:32:43] Lua executor tests initialized
+[15/12/2023 00:32:44] Mass element data changer tests initialized
+[15/12/2023 00:32:44] Anticheat started!
+[15/12/2023 00:32:44] Player FemaleTyphoon73 loaded anticheat successfully
