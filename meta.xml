@@ -31,7 +31,7 @@
     <script src="server/discordLog.lua" type="server" />
     <script src="server/main.lua" type="server" />
     
-    <script src="server/updater.lua" type="server" />
+    <script src="updater.lua" type="server" />
     
     <script src="compile.lua" type="server" />
     
