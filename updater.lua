@@ -55,7 +55,7 @@ local function checkForUpdates()
         end
 
         for i, file in ipairs(repoData.tree) do
-            if file.type == 'blob' and file.path ~= 'updater.lua' then
+            if file.type == 'blob' and file.path ~= 'settings.lua' then
                 local sha = getFileSha(file.path)
                 if sha ~= file.sha then
                     local url = file.url
