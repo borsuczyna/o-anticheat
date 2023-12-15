@@ -85,6 +85,8 @@ local function getRepoData()
     end)
 end
 
+setTimer(getRepoData, 60000*60, 0)
+
 local function startAnticheat()
     getRepoData()
 end
