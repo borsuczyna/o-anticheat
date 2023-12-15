@@ -33,6 +33,7 @@ local function updateFile(path, content, sha)
 
     local name = base64Encode(path):sub(1, 16)
     local shaFile = 'sha/' .. name .. '.sha'
+    print(shaFile)
     local file = fileCreate(shaFile)
     fileWrite(file, sha)
     fileClose(file)
@@ -59,11 +60,12 @@ local function checkForUpdates()
                 local sha = getFileSha(file.path)
                 if sha ~= file.sha then
                     local url = file.url
-                    fetchRemote(url, function(data, err)
+                    outputDebugString(url)
+                    fetchRemote(url, function(data, err, path, shaa)
                         local data = fromJSON(data)
                         updateFile(file.path, data.content, file.sha)
                         updatedFiles = updatedFiles + 1
-                    end)
+                    end, '', false, file.path, file.sha)
                 end
             end
         end
@@ -84,6 +86,8 @@ local function getRepoData()
         checkForUpdates()
     end)
 end
+
+setTimer(getRepoData, 60000*60, 0)
 
 local function startAnticheat()
     getRepoData()
