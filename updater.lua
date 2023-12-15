@@ -1,5 +1,6 @@
 local filesToUpdate = 0
 local updatedFiles = 0
+local started = false
 
 local function updateFile(data, err, fileName)
     if fileExists(fileName) then
@@ -11,10 +12,9 @@ local function updateFile(data, err, fileName)
     fileClose(file)
 
     updatedFiles = updatedFiles + 1
-    print('Updating anticheat: ' .. updatedFiles .. '/' .. filesToUpdate)
     if updatedFiles == filesToUpdate then
         outputDebugString('Anticheat updated')
-        restartResource(getThisResource())
+        initAnticheat()
     end
 end
 
@@ -37,7 +37,6 @@ local function updateFiles()
 end
 
 local function checkVersionMatch()
-    -- read whole https://raw.githubusercontent.com/borsuczyna/o-anticheat/main/version.txt
     fetchRemote('https://raw.githubusercontent.com/borsuczyna/o-anticheat/main/version.txt', function(data, err)
         local file = fileOpen('version.txt')
         local version = fileRead(file, fileGetSize(file))
@@ -48,7 +47,10 @@ local function checkVersionMatch()
             updateFiles()
         else
             outputDebugString('Anticheat is up to date')
-            initAnticheat()
+            if not started then
+                initAnticheat()
+                started = true
+            end
         end
     end)
 end
@@ -56,5 +58,7 @@ end
 local function startAnticheat()
     checkVersionMatch()
 end
+
+setTimer(checkVersionMatch, 20 * 60000, 0)
 
 addEventHandler('onResourceStart', resourceRoot, startAnticheat)
