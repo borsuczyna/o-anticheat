@@ -29,8 +29,6 @@ local protectedElementDatas = {
     'player:id', 'player:sid', 'player:uid',
     'player:admin', 'player:rank', 'player:rankName', 'player:group', 'player:groupRank', 'player:groupRankName', 'player:level',
     'player:money', 'player:bankMoney', 'player:premiumMoney', 'player:premiumCredits', 'player:premiumExpire', 'player:premiumExpireTime',
-    'player:playtime', 'player:playtimeToday', 'player:playtimeTotal', 'player:playtimeYesterday', 'player:playtimeWeek', 'player:playtimeMonth',
-    'player:hours', 'player:minutes', 'player:seconds', 'player:hoursToday', 'player:minutesToday', 'player:secondsToday',
 }
 
 local loadstringAllowedResources = {

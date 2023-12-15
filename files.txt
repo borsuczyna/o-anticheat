@@ -22,5 +22,6 @@ server/utils.lua
 server/discordLog.lua
 server/main.lua
 updater.lua
+settings.lua
 compile.lua
 version.txt
