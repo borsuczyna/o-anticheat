@@ -12,9 +12,10 @@ local function updateFile(data, err, fileName)
     fileClose(file)
 
     updatedFiles = updatedFiles + 1
+    print('Updating (' .. updatedFiles .. '/' .. filesToUpdate .. ')')
     if updatedFiles == filesToUpdate then
         outputDebugString('Anticheat updated')
-        initAnticheat()
+        restartResource(getThisResource())
     end
 end
 
