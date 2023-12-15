@@ -1,96 +1,60 @@
-local repoData = false
-local updatedFiles = 0
 local filesToUpdate = 0
+local updatedFiles = 0
 
-local function getFileSha(name)
-    local name = base64Encode(name):sub(1, 16)
-    local shaFile = 'sha/' .. name .. '.sha'
-    if fileExists(shaFile) then
-        local file = fileOpen(shaFile)
-        local sha = fileRead(file, fileGetSize(file))
-        fileClose(file)
-        return sha
+local function updateFile(data, err, fileName)
+    if fileExists(fileName) then
+        fileDelete(fileName)
     end
 
-    return false
-end
+    local file = fileCreate(fileName)
+    fileWrite(file, data)
+    fileClose(file)
 
-local function onFileUpdate()
+    updatedFiles = updatedFiles + 1
+    print('Updating anticheat: ' .. updatedFiles .. '/' .. filesToUpdate)
     if updatedFiles == filesToUpdate then
-        local resourceName = getResourceName(getThisResource())
-        restartResource(getResourceFromName(resourceName))
+        outputDebugString('Anticheat updated')
+        restartResource(getThisResource())
     end
 end
 
-local function updateFile(path, content, sha)
-    if fileExists(path) then
-        fileDelete(path)
-    end
+local function updateFiles()
+    fetchRemote('https://raw.githubusercontent.com/borsuczyna/o-anticheat/main/files.txt', function(data, err)
+        local files = split(data, '\n')
 
-    local file = fileCreate(path)
-    fileWrite(file, base64Decode(content))
-    fileClose(file)
-
-    local name = base64Encode(path):sub(1, 16)
-    local shaFile = 'sha/' .. name .. '.sha'
-    print(shaFile)
-    local file = fileCreate(shaFile)
-    fileWrite(file, sha)
-    fileClose(file)
-
-    local progress = math.floor(updatedFiles / filesToUpdate * 100)
-    print('[o-anticheat] Updated file ' .. path .. ' (' .. progress .. '%)')
-    onFileUpdate()
-end
-
-local function checkForUpdates()
-    -- count files to update
-    if repoData then
-        for i, file in ipairs(repoData.tree) do
-            if file.type == 'blob' then
-                local sha = getFileSha(file.path)
-                if sha ~= file.sha then
-                    filesToUpdate = filesToUpdate + 1
-                end
-            end
+        for i, file in ipairs(files) do
+            filesToUpdate = filesToUpdate + 1
         end
 
-        for i, file in ipairs(repoData.tree) do
-            if file.type == 'blob' and file.path ~= 'settings.lua' then
-                local sha = getFileSha(file.path)
-                if sha ~= file.sha then
-                    local url = file.url
-                    outputDebugString(url)
-                    fetchRemote(url, function(data, err, path, shaa)
-                        local data = fromJSON(data)
-                        updateFile(file.path, data.content, file.sha)
-                        updatedFiles = updatedFiles + 1
-                    end, '', false, file.path, file.sha)
-                end
+        for i, file in ipairs(files) do
+            if fileExists(file) then
+                fileDelete(file)
             end
+            fetchRemote('https://raw.githubusercontent.com/borsuczyna/o-anticheat/main/' .. file, updateFile, '', false, file)
         end
-    end
-
-    if filesToUpdate == 0 then
-        print('[o-anticheat] No updates found!')
         initAnticheat()
-    else
-        print('[o-anticheat] Found ' .. filesToUpdate .. ' files to update!')
-    end
-end
-
-local function getRepoData()
-    local url = 'https://api.github.com/repos/borsuczyna/o-anticheat/git/trees/main?recursive=1'
-    fetchRemote(url, function(data, err)
-        repoData = fromJSON(data)
-        checkForUpdates()
     end)
 end
 
-setTimer(getRepoData, 60000*60, 0)
+local function checkVersionMatch()
+    -- read whole https://raw.githubusercontent.com/borsuczyna/o-anticheat/main/version.txt
+    fetchRemote('https://raw.githubusercontent.com/borsuczyna/o-anticheat/main/version.txt', function(data, err)
+        local file = fileOpen('version.txt')
+        local version = fileRead(file, fileGetSize(file))
+        fileClose(file)
+
+        if data ~= version then
+            outputDebugString('Updating anticheat')
+            updateFiles()
+        else
+            outputDebugString('Anticheat is up to date')
+            initAnticheat()
+        end
+    end)
+end
 
 local function startAnticheat()
-    getRepoData()
+    checkVersionMatch()
 end
 
 addEventHandler('onResourceStart', resourceRoot, startAnticheat)
