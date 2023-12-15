@@ -33,7 +33,6 @@ local function updateFiles()
             end
             fetchRemote('https://raw.githubusercontent.com/borsuczyna/o-anticheat/main/' .. file, updateFile, '', false, file)
         end
-        initAnticheat()
     end)
 end
 
