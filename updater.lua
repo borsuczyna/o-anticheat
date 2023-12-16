@@ -14,6 +14,7 @@ local function updateFile(data, err, fileName)
     updatedFiles = updatedFiles + 1
     print('Updating (' .. updatedFiles .. '/' .. filesToUpdate .. ')')
     if updatedFiles == filesToUpdate then
+        outputAnticheatLog('Anticheat updated', true)
         outputDebugString('Anticheat updated')
         restartResource(getThisResource())
     end
