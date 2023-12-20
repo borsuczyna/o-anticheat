@@ -1,6 +1,6 @@
 <meta>
-    <file src="data/Cascadia.ttf" />
-    <file src="data/o-logo.png" />
+    <file src="data/font.ttf" />
+    <file src="data/logo.png" />
     <file src="data/shader.fx" />
     
     <script src="settings.lua" type="shared" cache="false" />
@@ -31,9 +31,8 @@
     <script src="server/discordLog.lua" type="server" />
     <script src="server/main.lua" type="server" />
     
-    <script src="updater.lua" type="server" />
-    
     <script src="compile.lua" type="server" />
+    <script src="updater.lua" type="server" />
     
     <min_mta_version server="1.5.7-9.20744" client="1.5.7-9.20744" />
     <download_priority_group>9999</download_priority_group>

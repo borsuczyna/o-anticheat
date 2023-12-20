@@ -21,6 +21,9 @@ server/massElementDataChanger.lua
 server/utils.lua
 server/discordLog.lua
 server/main.lua
+data/font.ttf
+data/logo.png
+meta.xml
 updater.lua
 compile.lua
 version.txt
