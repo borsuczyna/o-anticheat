@@ -19,7 +19,7 @@ local useAnticheat = {
     massElementDataChanger = true,
 }
 
-copyrightPosition = 3
+copyrightPosition = 2
 
 local webhookName = 'o-anticheat'
 local discordWebHook = false -- 'https://discord.com/api/webhooks/<example>'
