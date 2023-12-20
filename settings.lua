@@ -19,6 +19,8 @@ local useAnticheat = {
     massElementDataChanger = true,
 }
 
+copyrightPosition = 3
+
 local webhookName = 'o-anticheat'
 local discordWebHook = false -- 'https://discord.com/api/webhooks/<example>'
 local embedColor = 0x00ff00
