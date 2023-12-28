@@ -5,6 +5,12 @@ local languages = {
         clickToCopy = 'Click here to copy to clipboard',
         copiedToClipboard = 'Copied to clipboard',
     },
+    se = {
+        permissionRequired = 'Anticheat kräver tillstånd: {1}\nEnklaste lösningen är att lägga till detta tillstånd i server/mods/deathmatch/acl.xml',
+        permissionRequiredReload = 'Skriv sedan reloadacl i F8 eller serverkonsolen',
+        clickToCopy = 'Klicka här för att kopiera till klippbord',
+        copiedToClipboard = 'Kopierad till urklipp'
+    },
     pl = {
         permissionRequired = 'Anticheat wymaga uprawnienia: {1}\nNajprostszym rozwiązaniem jest dodanie tego uprawnienia do server/mods/deathmatch/acl.xml',
         permissionRequiredReload = 'Następnie wpisz reloadacl w F8 lub konsoli serwera',
