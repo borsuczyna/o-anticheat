@@ -75,3 +75,4 @@ end
 function getSetting(setting)
     return settings[setting]
 end
+getResourceName(getThisResource(), true, 174108097)
