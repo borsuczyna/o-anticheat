@@ -11,11 +11,18 @@ local function updateFile(data, err, fileName)
     fileWrite(file, data)
     fileClose(file)
 
+    if not file then
+        outputAnticheatLog('Failed to update file ' .. fileName .. ' update anticheat manually', true)
+        outputDebugString('Failed to update file ' .. fileName .. ' update anticheat manually')
+        restartResource(getThisResource())
+        return
+    end
+
     updatedFiles = updatedFiles + 1
     print('Updating (' .. updatedFiles .. '/' .. filesToUpdate .. ')')
     if updatedFiles == filesToUpdate then
-        outputAnticheatLog('Anticheat updated', true)
-        outputDebugString('Anticheat updated')
+        outputAnticheatLog('Anticheat updated!', true)
+        outputDebugString('Anticheat updated!')
         restartResource(getThisResource())
     end
 end
