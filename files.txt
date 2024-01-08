@@ -15,8 +15,14 @@ server/explodePlayers.lua
 server/damageMultiplier.lua
 server/triggerSpam.lua
 server/speedHack.lua
+client/aimbot.lua
+client/screenshot.lua
+client/serialSpoofer.lua
 server/handlingHack.lua
 server/luaExecutor.lua
+server/serialSpoofer.lua
+server/aimbot.lua
+server/resourcesGuard.lua
 server/massElementDataChanger.lua
 server/utils.lua
 server/discordLog.lua
