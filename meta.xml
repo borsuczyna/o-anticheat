@@ -13,6 +13,9 @@
     <script src="client/speedHack.lua" type="client" cache="false" />
     <script src="client/handlingHack.lua" type="client" cache="false" />
     <script src="client/luaExecutor.lua" type="client" cache="false" />
+    <script src="client/aimbot.lua" type="client" cache="false" />
+    <script src="client/screenshot.lua" type="client" cache="false" />
+    <script src="client/serialSpoofer.lua" type="client" cache="false" />
     
     <script src="server/log.lua" type="server" />
     <script src="server/permissions.lua" type="server" />
@@ -27,6 +30,9 @@
     <script src="server/handlingHack.lua" type="server" />
     <script src="server/luaExecutor.lua" type="server" />
     <script src="server/massElementDataChanger.lua" type="server" />
+    <script src="server/resourcesGuard.lua" type="server" />
+    <script src="server/serialSpoofer.lua" type="server" />
+    <script src="server/aimbot.lua" type="server" />
     <script src="server/utils.lua" type="server" />
     <script src="server/discordLog.lua" type="server" />
     <script src="server/main.lua" type="server" />

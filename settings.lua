@@ -6,6 +6,8 @@ local settings = {
 }
 
 local useAnticheat = {
+	aimbot = true,
+	serialSpoofer = true,
 	resourcesGuard = true,
     lockerCheck = true,
     flyHack = true,
