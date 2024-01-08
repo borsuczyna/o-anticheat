@@ -6,6 +6,7 @@ local settings = {
 }
 
 local useAnticheat = {
+	resourcesGuard = true,
     lockerCheck = true,
     flyHack = true,
     vehicleFlyHack = true,

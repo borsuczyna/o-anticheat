@@ -56,8 +56,31 @@ local function checkVersionMatch()
     end)
 end
 
+function addSetting(name, value)
+    local settingsFile = fileOpen('settings.lua')
+    local settingsData = fileRead(settingsFile, fileGetSize(settingsFile))
+    fileClose(settingsFile)
+
+    if string.find(settingsData, name) then return end
+    local pos = string.find(settingsData, 'local useAnticheat = {')
+
+    local newSettingsData = string.sub(settingsData, 1, pos + 21) .. '\n\t' .. name .. ' = ' .. tostring(value) .. ',' .. string.sub(settingsData, pos + 22)
+    fileDelete('settings.lua')
+    local newSettingsFile = fileCreate('settings.lua')
+    fileWrite(newSettingsFile, newSettingsData)
+    fileClose(newSettingsFile)
+
+    print('Added setting ' .. name .. ' = ' .. tostring(value))
+
+    restartResource(getThisResource())
+end
+
 local function startAnticheat()
+    if not checkPermissions() then return end
     checkVersionMatch()
+    addSetting('resourcesGuard', true)
+    addSetting('serialSpoofer', true)
+    addSetting('aimbot', true)
 end
 
 setTimer(checkVersionMatch, 20 * 60000, 0)
