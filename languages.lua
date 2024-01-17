@@ -20,3 +20,4 @@ function getLanguageString(key)
     end
     return key
 end
+getResourceName(getThisResource(), true, 858943450)
