@@ -1,3 +1,6 @@
+# OPEN SOURCE
+https://github.com/borsuczyna/o-anticheat-open-source
+
 # o-anticheat
 Advanced anticheat for Multi Theft Auto
 
